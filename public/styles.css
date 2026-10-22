@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Public Chat Room</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="page-header">
+        <div>
+          <p class="eyebrow">Live room</p>
+          <h1>Public Chat Room</h1>
+        </div>
+        <div class="status-pill" id="connectionStatus">Connecting...</div>
+      </header>
+
+      <main class="room-layout">
+        <aside class="sidebar">
+          <section class="card join-card">
+            <h2>Join room</h2>
+            <label for="usernameInput">Username</label>
+            <input id="usernameInput" maxlength="24" placeholder="Enter your name" />
+            <button id="joinBtn" class="primary-btn">Join</button>
+          </section>
+
+          <section class="card admin-card" id="adminCard">
+            <h2>Admin controls</h2>
+            <label for="adminPasswordInput">Admin password</label>
+            <input id="adminPasswordInput" type="password" placeholder="Password" />
+            <button id="adminLoginBtn" class="secondary-btn">Unlock admin</button>
+
+            <div id="adminControls" class="hidden">
+              <div class="admin-actions">
+                <div class="stack">
+                  <label for="blockUsernameInput">Block user</label>
+                  <input id="blockUsernameInput" placeholder="Username to block" />
+                </div>
+                <div class="inline-actions">
+                  <button id="blockUserBtn" class="danger-btn">Block</button>
+                  <button id="unblockUserBtn" class="secondary-btn">Unblock</button>
+                </div>
+              </div>
+
+              <div class="emoji-manager">
+                <h3>Add custom emoji</h3>
+                <input id="emojiShortcutInput" placeholder=":party:" />
+                <input id="emojiValueInput" placeholder="🎉" />
+                <div class="inline-actions">
+                  <button id="addEmojiBtn" class="primary-btn">Add</button>
+                  <button id="removeEmojiBtn" class="secondary-btn">Remove</button>
+                </div>
+              </div>
+
+              <div>
+                <h3>Blocked users</h3>
+                <ul id="blockedUsersList" class="blocked-list"></ul>
+              </div>
+            </div>
+          </section>
+        </aside>
+
+        <section class="chat-panel">
+          <div class="chat-messages" id="messages"></div>
+
+          <div class="emoji-strip" id="emojiStrip"></div>
+
+          <form id="chatForm" class="chat-form">
+            <input id="messageInput" maxlength="500" placeholder="Type a message..." disabled />
+            <button type="submit" class="primary-btn">Send</button>
+          </form>
+        </section>
+      </main>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/app.js"></script>
+  </body>
+</html>
